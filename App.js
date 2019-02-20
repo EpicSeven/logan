@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button
+} from "react-native";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -10,11 +17,40 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  state = {
+    placeLogin: ""
+  };
+  placeLoginChangedHandler = val => {
+    this.setState({
+      placeLogin: val
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>Rabotaet ili net </Text>
+        <View>
+          <TextInput
+            value={this.state.placeLogin}
+            onChangeText={this.placeLoginChangedHandler}
+            style={{
+              width: 300,
+              borderColor: "blue",
+              borderWidth: 0.5,
+              backgroundColor: "#c4e9f4"
+            }}
+            placeholder="login"
+          />
+          <TextInput
+            style={{
+              width: 300,
+              borderColor: "blue",
+              borderWidth: 0.5,
+              backgroundColor: "#c4e9f4"
+            }}
+            placeholder="haslo"
+          />
+          <Button title="sign in" />
+        </View>
       </View>
     );
   }
@@ -22,19 +58,10 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "purple",
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+    backgroundColor: "#085065"
   }
 });
